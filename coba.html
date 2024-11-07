@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      width: 400px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button.submit {
+      background-color: #28a745;
+      color: white;
+    }
+    button.clear {
+      background-color: #dc3545;
+      color: white;
+    }
+    .message {
+      display: none;
+      background-color: #e9ffe9;
+      padding: 15px;
+      border: 1px solid #28a745;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="contactForm">
+  <h2>Contact Form</h2>
+  <div class="form-group">
+    <label for="name">Nama:</label>
+    <input type="text" id="name" placeholder="Masukkan Nama">
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Masukkan Email">
+  </div>
+  <div class="form-group">
+    <label for="message">Pesan:</label>
+    <textarea id="message" placeholder="Tulis pesan anda" rows="4"></textarea>
+  </div>
+  <button class="submit" onclick="submitForm()">Submit</button>
+  <button class="clear" onclick="clearForm()">Clear</button>
+</div>
+
+<div class="message" id="confirmationMessage"></div>
+
+<script>
+  function submitForm() {
+    // Ambil nilai input
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Validasi input
+    if (!name || !email || !message) {
+      alert("Semua kolom harus diisi!");
+      return;
+    }
+
+    // Sembunyikan form
+    document.getElementById('contactForm').style.display = 'none';
+
+    // Tampilkan pesan konfirmasi
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    confirmationMessage.innerHTML = `Nama: ${name}, Email: ${email}, Pesan: ${message}, data diatas akan segera di input ke database. Terimakasih!`;
+    confirmationMessage.style.display = 'block';
+  }
+
+  function clearForm() {
+    // Kosongkan semua input
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('message').value = '';
+  }
+</script>
+
+</body>
+</html>
